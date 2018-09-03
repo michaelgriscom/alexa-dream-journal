@@ -5,7 +5,7 @@ describe("index tests", () => {
     let alexa: va.VirtualAlexa;
     beforeEach(() => {
         alexa = va.VirtualAlexa.Builder()
-            .handler("src/index.handler") // Lambda function file and name
+            .handler("index.js") // Lambda function file and name
             .interactionModelFile("./models/en-US.json")
             .create();
     });
