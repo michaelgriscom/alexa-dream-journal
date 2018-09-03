@@ -1,0 +1,42 @@
+{
+  "name": "alexa-dream-journal",
+  "version": "0.0.1",
+  "description": "Dream Journal Skill for Alexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=8.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelgriscom/alexa-dream-journal.git"
+  },
+  "keywords": [
+    "alexa"
+  ],
+  "author": "Michael Griscom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelgriscom/alexa-dream-journal/issues"
+  },
+  "homepage": "https://github.com/michaelgriscom/alexa-dream-journal#readme",
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "ts-loader": "^4.2.0",
+    "ts-node": "6.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.3",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.0.7",
+    "ask-sdk-model": "^1.5.0",
+    "moment": "^2.17.1",
+    "source-map-loader": "^0.2.3",
+    "source-map-support": "^0.5.4"
+  }
+}
