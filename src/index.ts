@@ -8,6 +8,8 @@ import {
     Response,
     SessionEndedRequest,
 } from 'ask-sdk-model';
+import { CreateEntryIntentHandler } from './CreateEntryIntentHandler';
+import { IJournal } from './IJournal';
 
 const LaunchRequestHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput): boolean {
@@ -24,20 +26,7 @@ const LaunchRequestHandler: RequestHandler = {
     },
 };
 
-const HelloWorldIntentHandler: RequestHandler = {
-    canHandle(handlerInput: HandlerInput): boolean {
-        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-            && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
-    },
-    handle(handlerInput: HandlerInput): Response {
-        const speechText = 'Hello World!';
 
-        return handlerInput.responseBuilder
-            .speak(speechText)
-            .withSimpleCard('Hello World', speechText)
-            .getResponse();
-    },
-};
 
 const HelpIntentHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput): boolean {
@@ -96,37 +85,19 @@ const ErrorHandler: ErrorHandler = {
     },
 };
 
-let skill;
-
-exports.handler = async (event, context) => {
-    console.log(`REQUEST++++${JSON.stringify(event)}`);
-    if (!skill) {
-        skill = SkillBuilders.custom()
-            .addRequestHandlers(
-                LaunchRequestHandler,
-                HelloWorldIntentHandler,
-                HelpIntentHandler,
-                CancelAndStopIntentHandler,
-                SessionEndedRequestHandler,
-            )
-            .addErrorHandlers(ErrorHandler)
-            .create();
+const journal: IJournal = {
+    createEntry(contents: string) {
+        console.log("new entry:", contents);
     }
-
-    const response = await skill.invoke(event, context);
-    console.log(`RESPONSE++++${JSON.stringify(response)}`);
-
-    return response;
-};
+}
 
 const handler = SkillBuilders.custom()
-  .addRequestHandlers(
-    LaunchRequestHandler,
-    HelloWorldIntentHandler,
-    HelpIntentHandler,
-    CancelAndStopIntentHandler,
-    SessionEndedRequestHandler,
-)
+    .addRequestHandlers(
+        LaunchRequestHandler,
+        new CreateEntryIntentHandler(journal),
+        HelpIntentHandler,
+        CancelAndStopIntentHandler,
+        SessionEndedRequestHandler)
     .addErrorHandlers(ErrorHandler)
     .lambda();
 

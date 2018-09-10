@@ -10,10 +10,11 @@ describe("index tests", () => {
             .create();
     });
 
-    it("say hello", (done) => {
-        alexa.utter("hello").then((result) => {
+    it("create new dream", (done) => {
+        const contents = "these are the contents of the dream";
+        alexa.utter(`I had a dream about ${contents}`).then((result) => {
             expect((result as any).response.outputSpeech.ssml).to.exist;
-            expect((result as any).response.outputSpeech.ssml).to.include("Hello World");
+            expect((result as any).response.outputSpeech.ssml).to.include("Dream recorded");
             done();
         });
     });

@@ -17,13 +17,17 @@
                   "samples": []
                 },
                 {
-                    "name": "HelloWorldIntent",
+                    "name": "CreateEntryIntent",
                     "samples": [
-                        "hello",
-                        "say hello",
-                        "hello world"
+                        "I had a dream where {contents}",
+                        "I had a dream about {contents}"
                     ],
-                    "slots": []
+                    "slots": [
+                        {
+                            "name": "contents",
+                            "type": "AMAZON.LITERAL"
+                        }
+                    ]
                 }
             ]
         }
