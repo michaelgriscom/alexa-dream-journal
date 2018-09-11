@@ -9,7 +9,7 @@ import {
     SessionEndedRequest,
 } from 'ask-sdk-model';
 import { CreateEntryIntentHandler } from './CreateEntryIntentHandler';
-import { IJournal } from './IJournal';
+import { createJournal, IJournal } from './IJournal';
 
 const LaunchRequestHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput): boolean {
@@ -85,20 +85,16 @@ const ErrorHandler: ErrorHandler = {
     },
 };
 
-const journal: IJournal = {
-    createEntry(contents: string) {
-        console.log("new entry:", contents);
-    }
+export function createHandler(journal: IJournal) {
+return SkillBuilders.custom()
+.addRequestHandlers(
+    LaunchRequestHandler,
+    new CreateEntryIntentHandler(journal),
+    HelpIntentHandler,
+    CancelAndStopIntentHandler,
+    SessionEndedRequestHandler)
+.addErrorHandlers(ErrorHandler)
+.lambda();
 }
 
-const handler = SkillBuilders.custom()
-    .addRequestHandlers(
-        LaunchRequestHandler,
-        new CreateEntryIntentHandler(journal),
-        HelpIntentHandler,
-        CancelAndStopIntentHandler,
-        SessionEndedRequestHandler)
-    .addErrorHandlers(ErrorHandler)
-    .lambda();
-
-export default handler;
+export default createHandler(createJournal());
