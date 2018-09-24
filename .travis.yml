@@ -10,8 +10,7 @@ cache:
   directories:
   - "$HOME/.npm"
 before_deploy:
-- cd ..
-- ls ${REPO}
+- ls
 - zip -r ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
 deploy:
   provider: s3
