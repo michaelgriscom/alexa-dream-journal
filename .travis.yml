@@ -11,6 +11,7 @@ cache:
   - "$HOME/.npm"
 before_deploy:
 - cd ..
+- ls
 - zip ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
 deploy:
   provider: s3
