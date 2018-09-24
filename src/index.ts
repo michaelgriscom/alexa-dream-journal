@@ -16,12 +16,12 @@ const LaunchRequestHandler: RequestHandler = {
         return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
     handle(handlerInput: HandlerInput): Response {
-        const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+        const speechText = 'Opened your dream journal';
 
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
-            .withSimpleCard('Hello World', speechText)
+            .withSimpleCard('Opened your dream journal', speechText)
             .getResponse();
     },
 };
@@ -34,7 +34,7 @@ const HelpIntentHandler: RequestHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
     },
     handle(handlerInput: HandlerInput): Response {
-        const speechText = 'You can say hello to me!';
+        const speechText = 'You can add an entry to your journal';
 
         return handlerInput.responseBuilder
             .speak(speechText)

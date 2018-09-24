@@ -21,12 +21,14 @@ export class CreateEntryIntentHandler implements RequestHandler {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'
             && handlerInput.requestEnvelope.request.intent.name === intentName;
     }
-    
+
     handle(handlerInput: HandlerInput): Response | Promise<Response> {
         const speechText = responseText;
+        const accessToken = (handlerInput.requestEnvelope as any).user.accessToken;
+
         const contents = (handlerInput.requestEnvelope.request as any)
             .intent.slots.contents.value;
-        this.journal.createEntry(contents);
+        this.journal.createEntry(contents, accessToken);
         return handlerInput.responseBuilder
             .speak(speechText)
             .withSimpleCard(speechText, speechText)
