@@ -11,7 +11,7 @@ cache:
   - "$HOME/.npm"
 before_deploy:
 - ls
-- zip -r ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
+- zip -r ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip .
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
