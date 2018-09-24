@@ -12,6 +12,7 @@ cache:
 before_deploy:
 - cd ..
 - zip -r ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
+- ls ${REPO}
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
