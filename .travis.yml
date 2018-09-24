@@ -11,11 +11,10 @@ cache:
   - "$HOME/.npm"
 before_deploy:
 - cd ..
-- ls
-- zip ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
+- zip -r ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip ${REPO}
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
-  file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.zip
+  file: ${TRAVIS_BUILD_DIR}${REPO}-${TRAVIS_BUILD_NUMBER}.zip
   bucket: dream-skill
