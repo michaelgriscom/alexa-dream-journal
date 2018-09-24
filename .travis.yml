@@ -1,11 +1,17 @@
 sudo: false
 language: node_js
 node_js:
-  - "8.10"
+- '8.10'
 script: npm run build && npm test
 branches:
- only:
-   - "master"
+  only:
+  - master
 cache:
   directories:
-  - $HOME/.npm
+  - "$HOME/.npm"
+deploy:
+  provider: s3
+  access_key_id: AWS Key
+  secret_access_key:
+    secure: Wec7Q5nTtB/D9f1TkLLPZx9FqNCB03GOJ7M7FnsksoYnXVb7+Hoj6VVBuzk/Z1jyEcJvTO0BZsVvyH2hYENSFlJABO4BtV+1qY8yiwaf4HyyGgxeNp0oIXTp7xaWUzCQGcYprmaor+sUblKg6p3LzlGhGZUtdzSNEd/rx0qruObBQLxF8M1z+ApzcKZWRpXaS7LzADo8Sq0twRPPmL3HeM7Z23sNlO8hWRnfwHM8fGVzh5b0Puqb+5jvfm+BS8JEPg9dl1HpILkYwS6TKWR1B9QcMT5M48o/ZCrbNFAkqIfnKGeKChugB7xE/xiT7Co6hsnTfIjmcAtpzwaGOOLAiYqnLfBNKR72dCGSA2lhqwPbltd7YrYkemrUNDfk2eGxqniSETx2DRllEMLh2TPplUU11AvMYxG56kQEUiAWq6kVxdsXQa4OiHpnao1aCZo48/YwXSflUIU0q90cily8murdAW0tlwAcYIF9Zt5pT3muI3uM+8liBByntCQMJsVmu6OyUJbndNFu/Ke1P73LHY/0GBOG7cGZxj+emM2lh7zDWQv7TfTgdpR8conMQFUUIL8IN3I2jSb9xcEHrnqBujR6mRUCM2/uhpJjYoFfWqRD0zsnfBulUDOCDWGMbR/xQD/QBscMyOLoLljosbnpyCnFOPdVtM/988i7fAWaegg=
+  bucket: dream-skill

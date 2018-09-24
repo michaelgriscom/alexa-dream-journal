@@ -9,7 +9,7 @@ describe("index tests", () => {
     let journalStub: sinon.SinonStubbedInstance<journal.IJournal>;
 
     beforeEach(() => {
-        journalStub = sinon.createStubInstance(journal.ErrorJournal);
+        journalStub = sinon.createStubInstance(journal.ConsoleJournal);
         alexa = va.VirtualAlexa.Builder()
             .handler(createHandler(journalStub))
             .interactionModelFile("./models/en-US.json")
