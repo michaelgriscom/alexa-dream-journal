@@ -11,7 +11,7 @@ cache:
   - "$HOME/.npm"
 deploy:
   provider: s3
-  access_key_id: AKIAIFFP4QAHI66PSOHQ
+  access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key:
-    secure: J0ca2f4CgAFMIUoBKpA4ktGz5hprPnh5v5nLFz6l18NjeuSF5IB+mwZ3u0TzJBaE+AJxJ+4f/I/OT+f9AynHJpVdSvSlXZ2DYFQG7wYZaPUWV9eJq/msTjyPGXLAVwylr9bh6PuOTIdsbdQHyXxNmeH8e8DdoI9DzFStmnCcF6j0KejU7IlypwNXIVrhU4FmLXjNiQCm5U88oReS5d0LSUAnPr7klbrb7bYbZYORgvAHjHF2pe6dVUR2fwT48Rc0hQ5NumzIDcUq3GmRkcniJ7oYhjCIk4Aqv8PjXEr6R2MippyTToLFtKWMKtqLPlVn6I5mOG+Hsd9ZCrysrpEY7Ht/NlgTBwTvqWh3+l6PtzjaxwVZ6PbKN4VF/eXRlJffbSPVkrCqkkJz66Il02cSothDd3uJ7wSeLGrbpBdLOlx0vGQWbXYZDINwoDjEDxVHYeenhy2w1Q/+PVtjnjofi5SY9l3i7bmZkc3oWYcbKtGfCgShh45qMQQUTw+H+wqEAEQ9CxdeizriZY3iiwN4SrhC5FoX01Nl3mMOQ5KLPCAuglpMdTxJq1dJNrhan4Ndi9NPE2de/KKyxpCpZESL+58cygxaIhiJAk7rM+tRkv2yASb445F5t00NlBQ0eMA/kqBK2CDv2Oa/eHg4jxoOfh0vmETQatXrkwfPB7wum6A=
+    secure: $AWS_SECRET_ACCESS_KEY
   bucket: dream-skill
