@@ -1,35 +1,40 @@
 {
-    "interactionModel":{
-        "languageModel":{
-            "invocationName":"hello world",
-            "types":[],
-            "intents":[
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "dream journal",
+            "intents": [
                 {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
                 },
                 {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
                 },
                 {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
                 },
                 {
                     "name": "CreateEntryIntent",
-                    "samples": [
-                        "I had a dream where {contents}",
-                        "I had a dream about {contents}"
-                    ],
                     "slots": [
                         {
                             "name": "contents",
                             "type": "AMAZON.LITERAL"
                         }
+                    ],
+                    "samples": [
+                        "I had a dream about {elephants|contents}",
+                        "I had a dream about {green elephants|contents}",
+                        "I had a dream about {green elephants that could fly|contents}",
+                        "I had a dream about {green elephants that flew and jumped over buildings|contents}",
+                        "I had a dream where {I was invisible|contents}",
+                        "I had a dream where {I was invisible but twenty feet tall|contents}",
+                        "I had a dream where {I was invisible but twenty feet tall with a large stovepipe hat and a pet tiger that was green with pink spots|contents}"
                     ]
                 }
-            ]
+            ],
+            "types": []
         }
     }
 }

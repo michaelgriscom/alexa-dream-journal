@@ -11,9 +11,11 @@ describe("index tests", () => {
 
     beforeEach(() => {
         journalStub = sinon.createStubInstance(journal.ConsoleJournal);
+        // per https://github.com/bespoken/virtual-alexa/issues/66 virtual-alexa doesn't currently support
+        // the pipe annotation which is required for AMAZON.LITERAL, so instead of loading the model
+        // we'll just imperatively use 'intend' to invoke intentions
         alexa = va.VirtualAlexa.Builder()
             .handler(createHandler(journalStub))
-            .interactionModelFile("./models/en-US.json")
             .create();
         alexa.context().accessToken = () => accessToken;
     });
@@ -21,7 +23,7 @@ describe("index tests", () => {
     it("create new journal entry", (done) => {
         const contents = "these are the contents of the dream";
         journalStub.createEntry.returns(Promise.resolve());
-        alexa.utter(`I had a dream about ${contents}`).then((result) => {
+        alexa.intend("CreateEntryIntent", { "contents": contents }).then((result) => {
             expect((result as any).response.outputSpeech.ssml).to.exist;
             expect((result as any).response.outputSpeech.ssml).to.include("Dream recorded");
             expect(journalStub.createEntry.calledOnce).to.be.true;
