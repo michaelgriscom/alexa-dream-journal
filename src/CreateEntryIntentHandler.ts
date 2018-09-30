@@ -3,7 +3,7 @@ import {
     RequestHandler
 } from 'ask-sdk-core';
 import {
-    Response
+    Response, IntentRequest
 } from 'ask-sdk-model';
 import { IJournal } from './IJournal';
 
@@ -24,9 +24,10 @@ export class CreateEntryIntentHandler implements RequestHandler {
 
     handle(handlerInput: HandlerInput): Response | Promise<Response> {
         const speechText = responseText;
-        const accessToken = (handlerInput.requestEnvelope as any).session.user.accessToken;
+        const accessToken = handlerInput.requestEnvelope.session
+            && handlerInput.requestEnvelope.session.user.accessToken;
 
-        const contents = (handlerInput.requestEnvelope.request as any)
+        const contents = (handlerInput.requestEnvelope.request as IntentRequest)
             .intent.slots.contents.value;
         return this.journal.createEntry(contents, accessToken).then(() =>
              handlerInput.responseBuilder
