@@ -26,8 +26,6 @@ const LaunchRequestHandler: RequestHandler = {
     },
 };
 
-
-
 const HelpIntentHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput): boolean {
         return handlerInput.requestEnvelope.request.type === 'IntentRequest'

@@ -3,10 +3,9 @@ import { Memoize } from 'typescript-memoize';
 import { IJournal } from './IJournal';
 
 export class GoogleDriveDocWriter implements IJournal {
-    private drive: drive_v3.Drive;
     private static readonly folderName: string = "alexa-dream-journal";
+    private drive: drive_v3.Drive;
 
-    private latestFileId: string;
     public constructor(accessToken: string) {
         const oauth2Client = new google.auth.OAuth2();
         oauth2Client.setCredentials({ access_token: accessToken });
@@ -14,6 +13,21 @@ export class GoogleDriveDocWriter implements IJournal {
             version: 'v3',
             auth: oauth2Client
         });
+    }
+
+    public async createEntry(contents: string): Promise<void> {
+        const folderId = await this.getOrCreateFolder();
+        await this.drive.files.create({
+            requestBody: {
+                name: 'DreamSkill',
+                mimeType: 'text/plain',
+                parents: [folderId]
+            },
+            media: {
+                mediaType: 'text/plain',
+                body: contents
+            }
+        }, null);
     }
 
     private async getOrCreateFile(fileName: string) {
@@ -72,26 +86,11 @@ export class GoogleDriveDocWriter implements IJournal {
 
         return res.data.id;
     }
-
-    public async createEntry(contents: string): Promise<void> {
-        const folderId = await this.getOrCreateFolder();
-        await this.drive.files.create({
-            requestBody: {
-                name: 'DreamSkill',
-                mimeType: 'text/plain',
-                parents: [folderId]
-            },
-            media: {
-                mediaType: 'text/plain',
-                body: contents
-            }
-        }, null);
-    }
 }
 
 export class GoogleDriveSpreadsheetWriter implements IJournal {
-    private sheets: sheets_v4.Sheets;
     private static readonly spreadsheetName: "alexa-dream-journal";
+    private sheets: sheets_v4.Sheets;
 
     public constructor(accessToken: string) {
         const oauth2Client = new google.auth.OAuth2();
