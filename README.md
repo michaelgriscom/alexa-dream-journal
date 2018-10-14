@@ -1,3 +1,3 @@
-# alexa-dream-journal
+# dream-assistant
 
-[![Build Status](https://api.travis-ci.com/michaelgriscom/alexa-dream-journal.svg)](https://travis-ci.com/michaelgriscom/alexa-dream-journal)
+[![Build Status](https://api.travis-ci.com/michaelgriscom/dream-assistant.svg)](https://travis-ci.com/michaelgriscom/dream-assistant)
