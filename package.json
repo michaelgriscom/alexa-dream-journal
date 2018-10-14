@@ -1,7 +1,7 @@
 {
-  "name": "alexa-dream-journal",
+  "name": "dream-assistant",
   "version": "0.0.1",
-  "description": "Dream Journal Skill for Alexa",
+  "description": "Dream Assistant Skill for Alexa",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michaelgriscom/alexa-dream-journal.git"
+    "url": "git+https://github.com/michaelgriscom/dream-assistant.git"
   },
   "keywords": [
     "alexa"
@@ -20,9 +20,9 @@
   "author": "Michael Griscom",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/michaelgriscom/alexa-dream-journal/issues"
+    "url": "https://github.com/michaelgriscom/dream-assistant/issues"
   },
-  "homepage": "https://github.com/michaelgriscom/alexa-dream-journal#readme",
+  "homepage": "https://github.com/michaelgriscom/dream-assistant#readme",
   "devDependencies": {
     "@types/mocha": "latest",
     "@types/node": "^10.9.4",
