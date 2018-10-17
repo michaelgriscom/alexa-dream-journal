@@ -2,8 +2,8 @@ import { google, drive_v3, sheets_v4 } from 'googleapis';
 import { IJournal } from './IJournal';
 
 export class GoogleDriveSpreadsheet implements IJournal {
-    private static readonly spreadsheetName: "alexa-dream-assistant";
-    private static readonly journalSheetName: "journal";
+    private static readonly spreadsheetName: string = "alexa-dream-assistant";
+    private static readonly journalSheetName: string = "journal";
 
     private sheets: sheets_v4.Sheets;
     private drive: drive_v3.Drive;
