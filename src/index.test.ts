@@ -10,7 +10,7 @@ describe("index tests", () => {
     const accessToken = "accessToken";
 
     beforeEach(() => {
-        journalStub = sinon.createStubInstance(journal.ConsoleJournal);
+        journalStub = sinon.createStubInstance(journal.SpreadsheetJournal);
         // per https://github.com/bespoken/virtual-alexa/issues/66 virtual-alexa doesn't currently support
         // the pipe annotation which is required for AMAZON.LITERAL, so instead of loading the model
         // we'll just imperatively use 'intend' to invoke intentions
