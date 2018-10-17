@@ -45,7 +45,8 @@ export class GoogleDriveSpreadsheet implements IJournal {
         const getItemRes = await this.drive.files.list({
             q: queryParts.join(queryJoin)
         }, null);
-        const itemId = getItemRes.data.files && getItemRes.data.files[0].id;
+
+        const itemId = getItemRes.data.files && getItemRes.data.files[0] && getItemRes.data.files[0].id;
         if (!itemId) {
             return null;
         }
