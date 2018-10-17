@@ -1,16 +1,17 @@
 import { expect } from "chai";
 import * as va from "virtual-alexa";
-import * as journal from "./IJournal";
+import * as journal from "./GoogleDriveSpreadsheet";
 import * as sinon from "sinon";
 import {createHandler} from "./index";
+import { IJournal } from "./IJournal";
 
 describe("index tests", () => {
     let alexa: va.VirtualAlexa;
-    let journalStub: sinon.SinonStubbedInstance<journal.IJournal>;
+    let journalStub: sinon.SinonStubbedInstance<IJournal>;
     const accessToken = "accessToken";
 
     beforeEach(() => {
-        journalStub = sinon.createStubInstance(journal.SpreadsheetJournal);
+        journalStub = sinon.createStubInstance(journal.GoogleDriveSpreadsheet);
         // per https://github.com/bespoken/virtual-alexa/issues/66 virtual-alexa doesn't currently support
         // the pipe annotation which is required for AMAZON.LITERAL, so instead of loading the model
         // we'll just imperatively use 'intend' to invoke intentions

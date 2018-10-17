@@ -1,5 +1,6 @@
 import { google, drive_v3, sheets_v4 } from 'googleapis';
 import { IJournal } from './IJournal';
+import { OAuth2Client } from 'google-auth-library';
 
 export class GoogleDriveSpreadsheet implements IJournal {
     private static readonly spreadsheetName: string = "alexa-dream-assistant";
@@ -7,21 +8,23 @@ export class GoogleDriveSpreadsheet implements IJournal {
 
     private sheets: sheets_v4.Sheets;
     private drive: drive_v3.Drive;
+    private oauth2Client: OAuth2Client;
 
-    public constructor(accessToken: string) {
-        const oauth2Client = new google.auth.OAuth2();
-        oauth2Client.setCredentials({ access_token: accessToken });
+    public constructor() {
+        this.oauth2Client = new google.auth.OAuth2();
         this.sheets = google.sheets({
             version: 'v4',
-            auth: oauth2Client
+            auth: this.oauth2Client
         });
         this.drive = google.drive({
             version: 'v3',
-            auth: oauth2Client
+            auth: this.oauth2Client
         });
     }
 
-    public async createEntry(contents: string): Promise<void> {
+    public async createEntry(contents: string, latestToken: string): Promise<void> {
+        this.setToken(latestToken);
+
         const spreadsheet = await this.getOrCreateSpreadsheet();
         const entryTime: string = new Date().toLocaleString();
         const entryData = [entryTime, contents];
@@ -35,6 +38,10 @@ export class GoogleDriveSpreadsheet implements IJournal {
                 values: [entryData]
             }
         });
+    }
+
+    private setToken(token: string) {
+        this.oauth2Client.setCredentials({ access_token: token });
     }
 
     private async getSpreadsheetId(): Promise<string> {
